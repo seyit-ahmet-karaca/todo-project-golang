@@ -1,1 +1,1 @@
-# todo-project-golang
+This project was developed with TDD. It consists of 3 projects as UI, user acceptance and backend application. The UI project was developed with VueJs. User acceptance application was developed using puppeteer. Backend application is developed with golang language.
