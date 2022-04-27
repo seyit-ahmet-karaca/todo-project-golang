@@ -1,0 +1,117 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+stages:
+  - build-test
+  - test
+  - dockerize-test
+  - deploy2TestEnv
+  - acceptance-tests
+  - build-production
+  - dockerize-production
+  - deploy2ProdEnv
+
+build-test-env:
+  stage: build-test
+  image: node:lts-alpine
+  script:
+    - npm install
+    - npm run build --mode=test
+  artifacts:
+    paths:
+      - dist
+
+test:
+  stage: test
+  image: node:lts
+  script:
+    - yarn install
+    - npm i -S @pact-foundation/pact@latest
+    - yarn test:unit
+#    - yarn test:pact
+#    - yarn publish:pact
+
+dockerize-test:
+  stage: dockerize-test
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [ "" ]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}:test-${CI_COMMIT_SHORT_SHA}"
+
+
+deploy2TestEnv:
+  stage: deploy2TestEnv
+  image: google/cloud-sdk
+  before_script:
+    - apt-get install gettext-base
+    - echo $KUBERNETES_SERVICE_ACCOUNT | base64 -d > ~/encoded_serviceaccount.json
+    - gcloud auth activate-service-account --key-file ~/encoded_serviceaccount.json
+    - gcloud container clusters get-credentials mdns-dev --region us-east1 --project sak-assignment
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_DEPLOY_USER}" "${CI_DEPLOY_PASSWORD}" | base64 | tr -d '\n')\"}}}" | base64 | tr -d '\n' > ./config.json
+    - cat ./config.json
+    - export DOCKER_CONFIG_CI_REGISTRY="$(cat ./config.json)"
+  script:
+    - cat deployment-test-env/todo-frontend-secret.yaml | envsubst | kubectl apply -f -
+    - cat deployment-test-env/todo-frontend-deployment.yaml | envsubst | kubectl apply -f -
+    - cat deployment-test-env/todo-frontend-service.yaml | envsubst | kubectl apply -f -
+
+acceptance-tests:
+  stage: acceptance-tests
+  trigger:
+    project: sak-modanisa-assignment/todo-acceptance
+    strategy: depend
+  variables:
+    PARENT_PIPELINE_ID: "todo-ui-project"
+
+build-production:
+  stage: build-production
+  image: node:lts-alpine
+  script:
+    - npm install
+    - npm run build-production --mode=production
+  artifacts:
+    paths:
+      - production
+
+dockerize-production:
+  stage: dockerize-production
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [ "" ]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}:prod-${CI_COMMIT_SHORT_SHA}"
+      --build-arg BUILD_DIR_ARG=production
+
+
+deploy2ProdEnv:
+  stage: deploy2ProdEnv
+  image: google/cloud-sdk
+  before_script:
+    - apt-get install gettext-base
+    - echo $KUBERNETES_SERVICE_ACCOUNT | base64 -d > ~/encoded_serviceaccount.json
+    - gcloud auth activate-service-account --key-file ~/encoded_serviceaccount.json
+    - gcloud container clusters get-credentials mdns-prod --region us-east1 --project sak-assignment
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_DEPLOY_USER}" "${CI_DEPLOY_PASSWORD}" | base64 | tr -d '\n')\"}}}" | base64 | tr -d '\n' > ./config.json
+    - cat ./config.json
+    - export DOCKER_CONFIG_CI_REGISTRY="$(cat ./config.json)"
+  script:
+    - cat deployment-prod-env/todo-frontend-secret.yaml | envsubst | kubectl apply -f -
+    - cat deployment-prod-env/todo-frontend-deployment.yaml | envsubst | kubectl apply -f -
+    - cat deployment-prod-env/todo-frontend-service.yaml | envsubst | kubectl apply -f -

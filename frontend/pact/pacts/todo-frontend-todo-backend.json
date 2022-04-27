@@ -1,0 +1,76 @@
+{
+  "consumer": {
+    "name": "todo-frontend"
+  },
+  "provider": {
+    "name": "todo-backend"
+  },
+  "interactions": [
+    {
+      "description": "a request for fetch todo list",
+      "providerState": "fetch items successfully",
+      "request": {
+        "method": "GET",
+        "path": "/api/todo-items"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "body": [
+          {
+            "id": 1,
+            "title": "Reading book"
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 1
+          },
+          "$.body[*].*": {
+            "match": "type"
+          },
+          "$.body[*].id": {
+            "match": "type"
+          },
+          "$.body[*].title": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to create todo list item",
+      "providerState": "create todo list item",
+      "request": {
+        "method": "POST",
+        "path": "/api/todo-item",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "body": {
+          "title": "do sport"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          },
+          "$.body.title": {
+            "match": "type"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-frontend-dev
+spec:
+  type: LoadBalancer
+  selector:
+    app: todo-frontend-dev
+  ports:
+    - port: 80
+      targetPort: 80

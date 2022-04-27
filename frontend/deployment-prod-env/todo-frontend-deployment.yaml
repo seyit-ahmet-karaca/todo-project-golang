@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-frontend-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-frontend-prod
+  template:
+    metadata:
+      labels:
+        app: todo-frontend-prod
+    spec:
+      imagePullSecrets:
+        - name: gitlab-registry-frontend-prod
+      containers:
+        - name: todo-frontend-prod
+          image: "${CI_REGISTRY_IMAGE}:prod-${CI_COMMIT_SHORT_SHA}"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "50m"
+          ports:
+            - containerPort: 80
