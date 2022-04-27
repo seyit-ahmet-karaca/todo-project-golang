@@ -28,7 +28,7 @@ There are three component in the page.
 - [ ] A list: lists items fetched from backend application
 
 ### Screenshot:
-![Todo list main page](./src/assets/mainPage.jpg)
+![Todo list main page](./src/assets/mainPage.JPG)
 
 ## Store
 ### state
