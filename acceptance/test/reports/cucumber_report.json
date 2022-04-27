@@ -1,0 +1,84 @@
+[
+  {
+    "description": "  As Product Owner I want to navigate to ToDoItem listing page\n  So that I can see empty list and add a new todo item",
+    "keyword": "Feature",
+    "name": "TodoList",
+    "line": 1,
+    "id": "todolist",
+    "tags": [],
+    "uri": "features\\todolist.feature",
+    "elements": [
+      {
+        "id": "todolist;adding-a-todo-item",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Adding a TODO item",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "features\\support\\config.js:56"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1373000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Empty ToDo List",
+            "match": {
+              "location": "features\\steps\\todolist.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6201000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "I write \"buy some milk\" to text box and click to add button",
+            "match": {
+              "location": "features\\steps\\todolist.js:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "I should see \"buy some milk\" item in ToDo list",
+            "match": {
+              "location": "features\\steps\\todolist.js:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3020000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "features\\support\\config.js:68"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
