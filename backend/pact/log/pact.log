@@ -1,0 +1,136 @@
+# Logfile created on 2022-02-21 03:01:57 +0300 by logger.rb/47272
+I, [2022-02-21T03:09:18.908150 #3152]  INFO -- : Running example 'Verifying a pact between frondend and backend Given get to do items successfully a request for to do items with GET / returns a response which has status code 200'
+I, [2022-02-21T03:09:18.941511 #3152]  INFO -- : Sending GET request to path: "/" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"get to do items successfully"}]}, see debug logs for body
+D, [2022-02-21T03:09:18.941511 #3152] DEBUG -- : body :
+I, [2022-02-21T03:09:18.998187 #3152]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"0", "Date"=>"Mon, 21 Feb 2022 00:09:18 GMT"}, see debug logs for body
+D, [2022-02-21T03:09:18.999187 #3152] DEBUG -- : body: 
+I, [2022-02-21T03:09:19.010186 #3152]  INFO -- : Running example 'Verifying a pact between frondend and backend Given set item done a request for set item done with PUT /1 returns a response which has status code 200'
+I, [2022-02-21T03:09:19.015804 #3152]  INFO -- : Sending PUT request to path: "/1" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"set item done"}]}, see debug logs for body
+D, [2022-02-21T03:09:19.015804 #3152] DEBUG -- : body :
+I, [2022-02-21T03:09:19.044877 #3152]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"0", "Date"=>"Mon, 21 Feb 2022 00:09:19 GMT"}, see debug logs for body
+D, [2022-02-21T03:09:19.044877 #3152] DEBUG -- : body: 
+I, [2022-02-21T03:09:19.045400 #3152]  INFO -- : Running example 'Verifying a pact between frondend and backend Given add new to do list item a request to add new to do list item with POST / returns a response which has status code 201'
+I, [2022-02-21T03:09:19.050398 #3152]  INFO -- : Sending POST request to path: "/" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"add new to do list item"}]}, see debug logs for body
+D, [2022-02-21T03:09:19.050398 #3152] DEBUG -- : body :{"title":"spor","description":"mekik"}
+I, [2022-02-21T03:09:19.076493 #3152]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"0", "Date"=>"Mon, 21 Feb 2022 00:09:19 GMT"}, see debug logs for body
+D, [2022-02-21T03:09:19.076493 #3152] DEBUG -- : body: 
+I, [2022-02-21T03:10:27.059548 #18492]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-21T03:10:27.084607 #18492]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-21T03:10:27.085608 #18492] DEBUG -- : body :
+I, [2022-02-21T03:10:27.138145 #18492]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Mon, 21 Feb 2022 00:10:27 GMT"}, see debug logs for body
+D, [2022-02-21T03:10:27.138145 #18492] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-21T03:10:27.142235 #18492]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-21T03:10:27.146992 #18492]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-21T03:10:27.146992 #18492] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-21T03:10:27.168044 #18492]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Mon, 21 Feb 2022 00:10:27 GMT"}, see debug logs for body
+D, [2022-02-21T03:10:27.168044 #18492] DEBUG -- : body: 
+I, [2022-02-21T08:31:35.325692 #14204]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-21T08:31:35.371094 #14204]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-21T08:31:35.371094 #14204] DEBUG -- : body :
+I, [2022-02-21T08:31:35.443198 #14204]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Mon, 21 Feb 2022 05:31:35 GMT"}, see debug logs for body
+D, [2022-02-21T08:31:35.443198 #14204] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-21T08:31:35.449413 #14204]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-21T08:31:35.457375 #14204]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-21T08:31:35.458365 #14204] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-21T08:31:35.490012 #14204]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Mon, 21 Feb 2022 05:31:35 GMT"}, see debug logs for body
+D, [2022-02-21T08:31:35.490012 #14204] DEBUG -- : body: 
+I, [2022-02-21T19:43:04.686283 #16356]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-21T19:43:04.732502 #16356]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-21T19:43:04.732502 #16356] DEBUG -- : body :
+I, [2022-02-21T19:43:04.832087 #16356]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Mon, 21 Feb 2022 16:43:04 GMT"}, see debug logs for body
+D, [2022-02-21T19:43:04.833090 #16356] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-21T19:43:04.838618 #16356]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-21T19:43:04.846135 #16356]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-21T19:43:04.847136 #16356] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-21T19:43:04.895822 #16356]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Mon, 21 Feb 2022 16:43:04 GMT"}, see debug logs for body
+D, [2022-02-21T19:43:04.895822 #16356] DEBUG -- : body: 
+I, [2022-02-21T21:31:48.428213 #10000]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-21T21:31:48.470438 #10000]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-21T21:31:48.470438 #10000] DEBUG -- : body :
+I, [2022-02-21T21:31:48.568437 #10000]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Mon, 21 Feb 2022 18:31:48 GMT"}, see debug logs for body
+D, [2022-02-21T21:31:48.568967 #10000] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-21T21:31:48.572958 #10000]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-21T21:31:48.580292 #10000]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-21T21:31:48.580292 #10000] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-21T21:31:48.629836 #10000]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Mon, 21 Feb 2022 18:31:48 GMT"}, see debug logs for body
+D, [2022-02-21T21:31:48.629836 #10000] DEBUG -- : body: 
+I, [2022-02-22T21:34:52.567564 #5684]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-22T21:34:52.588892 #5684]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-22T21:34:52.589892 #5684] DEBUG -- : body :
+I, [2022-02-22T21:34:52.638195 #5684]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Tue, 22 Feb 2022 18:34:52 GMT"}, see debug logs for body
+D, [2022-02-22T21:34:52.638955 #5684] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-22T21:34:52.643472 #5684]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-22T21:34:52.650738 #5684]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-22T21:34:52.650738 #5684] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-22T21:34:52.669709 #5684]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Tue, 22 Feb 2022 18:34:52 GMT"}, see debug logs for body
+D, [2022-02-22T21:34:52.669709 #5684] DEBUG -- : body: 
+I, [2022-02-22T21:34:52.686825 #5684]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-22T21:34:52.693629 #5684]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-22T21:34:52.693629 #5684] DEBUG -- : body :
+I, [2022-02-22T21:34:52.717354 #5684]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"79", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Tue, 22 Feb 2022 18:34:52 GMT"}, see debug logs for body
+D, [2022-02-22T21:34:52.717354 #5684] DEBUG -- : body: [{"id":1,"title":"test1"},{"id":2,"title":"do sport"},{"id":3,"title":"test1"}]
+I, [2022-02-22T21:34:52.718875 #5684]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-22T21:34:52.726259 #5684]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-22T21:34:52.726259 #5684] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-22T21:34:52.748273 #5684]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Tue, 22 Feb 2022 18:34:52 GMT"}, see debug logs for body
+D, [2022-02-22T21:34:52.748996 #5684] DEBUG -- : body: 
+I, [2022-02-22T21:35:40.572986 #19632]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-22T21:35:40.592985 #19632]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-22T21:35:40.592985 #19632] DEBUG -- : body :
+I, [2022-02-22T21:35:40.649676 #19632]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Tue, 22 Feb 2022 18:35:40 GMT"}, see debug logs for body
+D, [2022-02-22T21:35:40.650637 #19632] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-22T21:35:40.653663 #19632]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-22T21:35:40.660670 #19632]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-22T21:35:40.660670 #19632] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-22T21:35:40.681652 #19632]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Tue, 22 Feb 2022 18:35:40 GMT"}, see debug logs for body
+D, [2022-02-22T21:35:40.682444 #19632] DEBUG -- : body: 
+I, [2022-02-22T21:37:49.503114 #14804]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-22T21:37:49.522135 #14804]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-22T21:37:49.522135 #14804] DEBUG -- : body :
+I, [2022-02-22T21:37:49.569362 #14804]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Tue, 22 Feb 2022 18:37:49 GMT"}, see debug logs for body
+D, [2022-02-22T21:37:49.570362 #14804] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-22T21:37:49.573890 #14804]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-22T21:37:49.580578 #14804]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-22T21:37:49.580578 #14804] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-22T21:37:49.599984 #14804]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Tue, 22 Feb 2022 18:37:49 GMT"}, see debug logs for body
+D, [2022-02-22T21:37:49.600968 #14804] DEBUG -- : body: 
+I, [2022-02-22T21:46:13.879381 #10620]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-22T21:46:13.901534 #10620]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-22T21:46:13.901534 #10620] DEBUG -- : body :
+I, [2022-02-22T21:46:13.961820 #10620]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Tue, 22 Feb 2022 18:46:13 GMT"}, see debug logs for body
+D, [2022-02-22T21:46:13.961820 #10620] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-22T21:46:13.966343 #10620]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-22T21:46:13.974509 #10620]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-22T21:46:13.974509 #10620] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-22T21:46:14.006627 #10620]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Tue, 22 Feb 2022 18:46:13 GMT"}, see debug logs for body
+D, [2022-02-22T21:46:14.006627 #10620] DEBUG -- : body: 
+I, [2022-02-22T21:48:37.525395 #13692]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-22T21:48:37.547462 #13692]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-22T21:48:37.547462 #13692] DEBUG -- : body :
+I, [2022-02-22T21:48:37.612379 #13692]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Tue, 22 Feb 2022 18:48:37 GMT"}, see debug logs for body
+D, [2022-02-22T21:48:37.613378 #13692] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-22T21:48:37.618391 #13692]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-22T21:48:37.627095 #13692]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-22T21:48:37.627095 #13692] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-22T21:48:37.659405 #13692]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Tue, 22 Feb 2022 18:48:37 GMT"}, see debug logs for body
+D, [2022-02-22T21:48:37.660351 #13692] DEBUG -- : body: 
+I, [2022-02-22T21:54:05.493963 #15780]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-22T21:54:05.517163 #15780]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-22T21:54:05.517163 #15780] DEBUG -- : body :
+I, [2022-02-22T21:54:05.566223 #15780]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Tue, 22 Feb 2022 18:54:05 GMT"}, see debug logs for body
+D, [2022-02-22T21:54:05.566223 #15780] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-22T21:54:05.570767 #15780]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-22T21:54:05.580745 #15780]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-22T21:54:05.580745 #15780] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-22T21:54:05.611696 #15780]  INFO -- : Received response with status: 201, headers: {"Content-Length"=>"0", "Date"=>"Tue, 22 Feb 2022 18:54:05 GMT"}, see debug logs for body
+D, [2022-02-22T21:54:05.611696 #15780] DEBUG -- : body: 
+I, [2022-02-24T08:37:23.005609 #8056]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given fetch items successfully a request for fetch todo list with GET /api/todo-items returns a response which has status code 200'
+I, [2022-02-24T08:37:23.029247 #8056]  INFO -- : Sending GET request to path: "/api/todo-items" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"fetch items successfully"}]}, see debug logs for body
+D, [2022-02-24T08:37:23.029247 #8056] DEBUG -- : body :
+I, [2022-02-24T08:37:23.106048 #8056]  INFO -- : Received response with status: 200, headers: {"Access-Control-Allow-Origin"=>"*", "Content-Length"=>"26", "Content-Type"=>"application/json; charset=UTF-8", "Date"=>"Thu, 24 Feb 2022 05:37:23 GMT", "Vary"=>"Origin"}, see debug logs for body
+D, [2022-02-24T08:37:23.106048 #8056] DEBUG -- : body: [{"id":1,"title":"test1"}]
+I, [2022-02-24T08:37:23.110690 #8056]  INFO -- : Running example 'Verifying a pact between todo-frontend and todo-backend Given create todo list item a request to create todo list item with POST /api/todo-item returns a response which has status code 201'
+I, [2022-02-24T08:37:23.117160 #8056]  INFO -- : Sending POST request to path: "/api/todo-item" with headers: {"CONTENT_TYPE"=>"application/json; charset=UTF-8", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Content-Type", "X_PACT_PROVIDER_STATES"=>[{"name"=>"create todo list item"}]}, see debug logs for body
+D, [2022-02-24T08:37:23.117160 #8056] DEBUG -- : body :{"title":"do sport"}
+I, [2022-02-24T08:37:23.167494 #8056]  INFO -- : Received response with status: 201, headers: {"Access-Control-Allow-Origin"=>"*", "Content-Length"=>"0", "Date"=>"Thu, 24 Feb 2022 05:37:23 GMT", "Vary"=>"Origin"}, see debug logs for body
+D, [2022-02-24T08:37:23.168100 #8056] DEBUG -- : body: 

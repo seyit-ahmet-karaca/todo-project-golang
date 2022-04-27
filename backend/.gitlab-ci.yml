@@ -1,0 +1,87 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+stages:
+  - build
+  - unit_test
+  - dockerize
+  - deploy2TestEnv
+  - consumer-driven-contract-tests
+  - Deploy2Prod
+
+build:
+  stage: build
+  image: golang:1.17
+  script:
+    - go mod download
+    - GOOS=linux CGO_ENABLED=0 go build -o target/karaca-assignment
+  artifacts:
+    paths:
+      - target/karaca-assignment
+
+unit:
+  stage: unit_test
+  image: golang:1.17
+  script:
+    - go test -v ./... -tags=unit
+
+dockerize:
+  stage: dockerize
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [ "" ]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}"
+
+deploy2TestEnv:
+  stage: deploy2TestEnv
+  image: google/cloud-sdk
+  before_script:
+    - apt-get install gettext-base
+    - echo $KUBERNETES_SERVICE_ACCOUNT | base64 -d > ~/encoded_serviceaccount.json
+    - gcloud auth activate-service-account --key-file ~/encoded_serviceaccount.json
+    - gcloud container clusters get-credentials mdns-dev --region us-east1 --project sak-assignment
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_DEPLOY_USER}" "${CI_DEPLOY_PASSWORD}" | base64 | tr -d '\n')\"}}}" | base64 | tr -d '\n' > ./config.json
+    - cat ./config.json
+    - export DOCKER_CONFIG_CI_REGISTRY="$(cat ./config.json)"
+  script:
+    - cat deployment-test-env/todo-backend-secret.yaml | envsubst | kubectl apply -f -
+    - cat deployment-test-env/todo-backend-deployment.yaml | envsubst | kubectl apply -f -
+    - cat deployment-test-env/todo-backend-service.yaml | envsubst | kubectl apply -f -
+
+consumer-driven-contract-tests:
+  stage: consumer-driven-contract-tests
+  image: golang:1.17
+  before_script:
+    - go mod download
+    - curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.88.82/pact-1.88.82-linux-x86_64.tar.gz
+    - tar -xzf pact-1.88.82-linux-x86_64.tar.gz -C /go/
+    - mv /go/pact/* /go/
+  script:
+    - go test -v ./... -tags=pact
+
+Deploy2Prod:
+  stage: Deploy2Prod
+  image: google/cloud-sdk
+  before_script:
+    - apt-get install gettext-base
+    - echo $KUBERNETES_SERVICE_ACCOUNT | base64 -d > ~/encoded_serviceaccount.json
+    - gcloud auth activate-service-account --key-file ~/encoded_serviceaccount.json
+    - gcloud container clusters get-credentials mdns-prod --region us-east1 --project sak-assignment
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_DEPLOY_USER}" "${CI_DEPLOY_PASSWORD}" | base64 | tr -d '\n')\"}}}" | base64 | tr -d '\n' > ./config.json
+    - cat ./config.json
+    - export DOCKER_CONFIG_CI_REGISTRY="$(cat ./config.json)"
+  script:
+    - cat deployment-prod-env/todo-backend-secret.yaml | envsubst | kubectl apply -f -
+    - cat deployment-prod-env/todo-backend-deployment.yaml | envsubst | kubectl apply -f -
+    - cat deployment-prod-env/todo-backend-service.yaml | envsubst | kubectl apply -f -

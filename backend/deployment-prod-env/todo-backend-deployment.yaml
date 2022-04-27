@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-backend-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-backend-prod
+  template:
+    metadata:
+      labels:
+        app: todo-backend-prod
+    spec:
+      imagePullSecrets:
+        - name: gitlab-registry-backend-prod
+      containers:
+        - name: todo-backend-prod
+          image: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}"
+          env:
+            - name: APP_ENV
+              value: "production_env"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 3000
